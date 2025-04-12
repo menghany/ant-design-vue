@@ -2,8 +2,8 @@
 ---
 order: 0
 title:
-  zh-CN: 手风琴模式
-  en-US: Accordion
+zh-CN: 手风琴模式
+en-US: Accordion
 ---
 
 ## zh-CN
@@ -30,7 +30,7 @@ Nodes of the same level can only be expanded one
 </template>
 <script lang="ts">
 import type { TreeProps } from 'ant-design-vue';
-import _ from 'lodash';
+import { difference } from 'lodash-es';
 import { defineComponent, ref, watch } from 'vue';
 
 const treeData: TreeProps['treeData'] = [
@@ -89,7 +89,7 @@ export default defineComponent({
         ({ key }) => key,
       );
       if (expanded) {
-        expandedKeys.value = _.difference(keys, tempKeys).concat(node.key);
+        expandedKeys.value = difference(keys, tempKeys).concat(node.key);
       } else {
         expandedKeys.value = keys;
       }
